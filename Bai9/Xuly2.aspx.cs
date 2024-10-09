@@ -11,15 +11,13 @@ namespace Bai9
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                string ten = Request.QueryString["txtTen"];
-                string hang = Request.QueryString["txtHang"];
-                string ngay = Request.QueryString["dNgaySX"];
-                string gia = Request.QueryString["fGia"];
-                Response.Write("Ten: " + ten + "<br>Hang: " + hang + "<br>Ngay: " + ngay + "<br>Gia: " + gia);
-
-            }
+            Response.ContentType = "text/xml";
+            var ten = "<ten>" + Request.QueryString["txtTen"] + "</ten>";
+            var hang = "<hang>" + Request.QueryString["txtHang"] + "</hang>";
+            var ngay = "<ngaysx>" + Request.QueryString["dNgaySX"] + "</ngaysx>";
+            var gia = "<gia>" + Request.QueryString["fGia"] + "</gia>";
+            Response.Write("<?xml version='1.0' encoding='utf-8'?>");
+            Response.Write("<body>" + ten + hang + ngay + gia + "</body>");
         }
     }
 }
